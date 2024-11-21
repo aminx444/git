@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="s" onsubmit="return  verif()">
+    <label>code a barre </label>
+    <input type="text" id="CB">
+    <input type="submit" value="envoyer">
+    <script>
+res=true
+CB=document.getElementById("CB").value;
+if(CB.length<13 || CB.length>13 )
+res=false;
+CB  =document.getElementById("CB").value;
+if(isNaN !=CB)
+alert("fedi")
+res=false
+
+</script>
+</form>
+</body>
+</html>

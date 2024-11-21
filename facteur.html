@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Facteur</title>
+    <link rel="stylesheet" href="messtyles.css">
+    <script src="facteur.js"></script>
+</head>
+<body>
+    <h1 id="facteurTitre">Votre Facture de Commande</h1>
+
+    <div id="factureDetails">
+    </div>
+
+    <script>
+        
+        window.onload = function() {
+            const commande = JSON.parse(localStorage.getItem("commande"));
+
+            if (commande) {
+               
+                document.getElementById("factureDetails").innerHTML = `
+                    <p><strong>Nom et Prénom :</strong> ${commande.nomPrenom}</p>
+                    <p><strong>Adresse :</strong> ${commande.adresse}</p>
+                    <p><strong>Menu Commandé :</strong> ${commande.menu}</p>
+                    <p><strong>Quantité :</strong> ${commande.quantite}</p>
+                    <p><strong>Prix Total :</strong> ${commande.prixTotal} dt</p>
+                    <p><strong>Temps de livraison :</strong> 30 minutes</p> 
+                `;
+            } else {
+                document.getElementById("factureDetails").innerHTML = "<p>Aucune commande trouvée.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

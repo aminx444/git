@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Commande</title>
+    <link rel="stylesheet" href="messtyles.css">
+    <script src="controles1.js"></script>
+</head>
+<body id="bb">
+    <h1 id="ti">Commande</h1>
+   
+    <form id="commandeForm" action="facteur.html" method="get" onsubmit="return sauvegarderCommande()">
+        <fieldset>
+            <legend>Veuillez remplir le formulaire pour commander</legend>
+            
+            <label for="nomPrenom">Nom et Prénom :</label><br>
+            <input type="text" id="nomPrenom" name="nomPrenom" required><br><br>
+        
+            <label for="adresse">Adresse :</label><br>
+            <input type="text" id="adresse" name="adresse" required><br><br>
+        
+            <label for="menu">Menu :</label><br>
+            <select id="menu" name="menu" required>
+                <option selected="choisir le plat" disabled>choisir le plat</option>
+                <option value="couscous">Couscous</option>
+                <option value="spaghetti">Spaghetti</option>
+                <option value="polonaise">Polonaise</option>
+                <option value="OJJA">OJJA</option>
+                <option value="mouloukhia">mouloukhia</option>
+            </select><br><br>
+        
+            <label for="quantite">Quantité :</label><br>
+            <input type="number" id="quantite" name="quantite" min="1" required><br><br>
+        
+            <input type="submit" value="Envoyer">
+            <button type="button" onclick="annuler()">Annuler</button>
+        </fieldset>
+    </form>
+
+    <script>
+        
+        function sauvegarderCommande() {
+            const nomPrenom = document.getElementById("nomPrenom").value;
+            const adresse = document.getElementById("adresse").value;
+            const menu = document.getElementById("menu").value;
+            const quantite = document.getElementById("quantite").value;
+
+            
+            const prixPlats = {
+                "couscous": 15,
+                "spaghetti": 12,
+                "polonaise": 20,
+                "OJJA": 22,
+                "mouloukhia": 15
+            };
+
+            const prixTotal = prixPlats[menu] * quantite;
+
+            
+            localStorage.setItem("commande", JSON.stringify({
+                nomPrenom: nomPrenom,
+                adresse: adresse,
+                menu: menu,
+                quantite: quantite,
+                prixTotal: prixTotal
+            }));
+            
+            return true;
+        }
+        
+        
+        function annuler() {
+            document.getElementById("commandeForm").reset();
+        }
+    </script>
+</body>
+</html>
